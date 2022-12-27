@@ -1,6 +1,6 @@
 /* Import */
-//import "./style.css";
 import { getWeather } from "./weather";
+import { renderChart } from "./chart";
 import { ICON_MAP } from "./iconMap";
 
 /* Get the user location */
@@ -9,12 +9,19 @@ navigator.geolocation.getCurrentPosition(positionSuccess, positionError);
 /* User location promise callback functions */
 /** get the weather data from the API */
 function positionSuccess({ coords }) {
+  /* Get the weather data */
   getWeather(
     coords.latitude,
     coords.longitude,
     Intl.DateTimeFormat().resolvedOptions().timeZone
   )
+    /* Render the weather data */
     .then(renderWeather)
+    .catch((e) => {
+      console.error(e);
+    })
+    /* Render the chart */
+    .then(renderChart)
     .catch((e) => {
       console.error(e);
     });
@@ -26,7 +33,7 @@ function positionError() {
 }
 
 /** Render the weather data to the UI */
-function renderWeather({ current, daily, hourly }) {
+function renderWeather({ current, daily, daily_chart, hourly }) {
   /* Render the weather data using the HTML templates */
   renderCurrentWeather(current);
   renderDailyWeather(daily);
@@ -37,8 +44,10 @@ function renderWeather({ current, daily, hourly }) {
       const mustFilter = setSelected(card);
       if (mustFilter) {
         filterHourlyWeather(card.querySelector(".day-card-day").textContent);
-        document.querySelector("div.filter-tag").textContent = card.querySelector(".day-card-day").textContent;
+        document.querySelector("div.filter-tag").textContent =
+          card.querySelector(".day-card-day").textContent;
       } else {
+        /* Display all entries */
         document.querySelectorAll("tr.hour-row").forEach((hourRow) => {
           hourRow.style.display = "";
         });
@@ -49,8 +58,10 @@ function renderWeather({ current, daily, hourly }) {
       const mustFilter = setSelected(card);
       if (mustFilter) {
         filterHourlyWeather(card.querySelector(".day-card-day").textContent);
-        document.querySelector("div.filter-tag").textContent = card.querySelector(".day-card-day").textContent;
+        document.querySelector("div.filter-tag").textContent =
+          card.querySelector(".day-card-day").textContent;
       } else {
+        /* Display all entries */
         document.querySelectorAll("tr.hour-row").forEach((hourRow) => {
           hourRow.style.display = "";
         });
@@ -61,6 +72,8 @@ function renderWeather({ current, daily, hourly }) {
   /* Remove loading class */
   document.body.classList.remove("loading");
   document.querySelector(".loading-overlay").style.display = "none";
+  /* Return daily data for the chart */
+  return { daily_chart };
 }
 
 /**  Query the DOM and set the textContent of a Node */
@@ -94,7 +107,7 @@ function renderCurrentWeather(current) {
 
 /* Formatter and DOM Elements */
 const DAY_FORMATTER = Intl.DateTimeFormat(undefined, { weekday: "long" });
-const dailySection = document.querySelector("[data-day-section]");
+const dailySection = document.querySelector("[data-day-div]");
 const dayCardTemplate = document.getElementById("day-card-template");
 
 /**  Render the daily weather data to the UI */

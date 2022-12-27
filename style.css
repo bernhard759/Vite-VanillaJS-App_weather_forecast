@@ -64,6 +64,8 @@ body.loading main * {
     display: flex;
     align-items: center;
     padding: 0.5rem;
+    background-color: white;
+    border: 2px solid slategray;
 }
 
 .header-left {
@@ -75,7 +77,6 @@ body.loading main * {
     margin: 0.5rem;
     padding: 0.25rem;
     margin-right: 2rem;
-    background-color: gainsboro;
 }
 
 
@@ -118,6 +119,7 @@ body.loading main * {
 
 .header .info-group {
     background-color: gainsboro;
+    border-radius: 4px;
     padding: 0.25rem;
     max-width: 60rem;
 
@@ -134,15 +136,26 @@ body.loading main * {
     font-size: .8rem;
 }
 
-/* Day section */
-.day-section {
+
+/* Day and chart section */
+.day-and-chart-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+/* Day */
+.day-div {
     display: grid;
-    width: 60%;
+    min-width: 450px;
+    width: 40%;
     grid-template-columns: repeat(auto-fit, 80px);
     gap: 0.5rem;
     justify-content: flex-start;
+    align-items: flex-start;
     gap: 1rem;
     padding: 1rem;
+    height: max-content;
 }
 
 .day-card {
@@ -153,7 +166,7 @@ body.loading main * {
     background-color: white;
     box-shadow: 3px 3px 0px lightblue;
     padding: 0.25rem;
-    min-height: 92px;
+    height: 92px;
 }
 
 .day-card.selected {
@@ -171,6 +184,30 @@ body.loading main * {
     margin-top: 0.5;
 }
 
+
+/* Chart */
+div.chart {
+    background-color: white;
+    min-width: 450px;
+    width: 50%;
+    aspect-ratio: 2;
+    border: 2px solid slategray;
+}
+
+.placeholder {
+    position: relative;
+}
+
+.placeholder img {
+    opacity: 0.1;
+    height: 350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
 /* Hours */
 .filter-tag {
     border-radius: 16px;
@@ -186,12 +223,12 @@ table.hour-section {
     text-align: center;
     border-spacing: 0;
     border-collapse: collapse;
-    border: 2px solid black;
+    border: 2px solid slategray;
     background-color: white;
 }
 
 .hour-row {
-    border-bottom: 2px solid lightslategray;
+    border-bottom: 2px solid slategray;
 }
 
 .hour-row > td {

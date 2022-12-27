@@ -19,6 +19,7 @@ export function getWeather(lat, lon, timezone) {
       return {
         current: parseCurrentWeather(data),
         daily: parseDailyWeather(data),
+        daily_chart: data.daily,
         hourly: parseHourlyWeather(data)
       };
     });
@@ -59,6 +60,10 @@ function parseDailyWeather({ daily }) {
       timestamp: new Date(time),
       iconCode: daily.weathercode[index],
       maxTemp: Math.round(daily.temperature_2m_max[index]),
+      minTemp: Math.round(daily.temperature_2m_min[index]),
+      flTempMax: Math.round(daily.apparent_temperature_max[index]),
+      flTempMin: Math.round(daily.apparent_temperature_min[index]),
+      precip: Math.round(daily.precipitation_sum[index] * 100) / 100,
     };
   });
 }
