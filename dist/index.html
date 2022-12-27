@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weather App</title>
   
-  <script type="module" crossorigin src="/Vite-VanillaJS-App_weather_forecast/assets/index-e8e07ab3.js"></script>
-  <link rel="stylesheet" href="/Vite-VanillaJS-App_weather_forecast/assets/index-272bc3e1.css">
+  <script type="module" crossorigin src="/Vite-VanillaJS-App_weather_forecast/assets/index-af9467e2.js"></script>
+  <link rel="stylesheet" href="/Vite-VanillaJS-App_weather_forecast/assets/index-6b85ca5d.css">
 </head>
 
 <!-- Document body -->
@@ -75,41 +75,48 @@
 
     <!-- Day section -->
     <h2>Daily</h2>
-    <section class="day-section" data-day-section>
-      <div class="day-card">
-        <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
-        <div class="day-card-day">Monday</div>
-        <div>32&deg;</div>
+    <section class="day-and-chart-section">
+      <div class="day-div" data-day-div>
+        <div class="day-card">
+          <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
+          <div class="day-card-day">Monday</div>
+          <div>32&deg;</div>
+        </div>
+        <div class="day-card">
+          <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
+          <div class="day-card-day">Tuesday</div>
+          <div>32&deg;</div>
+        </div>
+        <div class="day-card">
+          <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
+          <div class="day-card-day">Wednesday</div>
+          <div>32&deg;</div>
+        </div>
+        <div class="day-card">
+          <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
+          <div class="day-card-day">Thursday</div>
+          <div>32&deg;</div>
+        </div>
+        <div class="day-card">
+          <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
+          <div class="day-card-day">Friday</div>
+          <div>32&deg;</div>
+        </div>
+        <div class="day-card">
+          <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
+          <div class="day-card-day">Saturday</div>
+          <div>32&deg;</div>
+        </div>
+        <div class="day-card">
+          <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
+          <div class="day-card-day">Sunday</div>
+          <div>32&deg;</div>
+        </div>
       </div>
-      <div class="day-card">
-        <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
-        <div class="day-card-day">Tuesday</div>
-        <div>32&deg;</div>
-      </div>
-      <div class="day-card">
-        <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
-        <div class="day-card-day">Wednesday</div>
-        <div>32&deg;</div>
-      </div>
-      <div class="day-card">
-        <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
-        <div class="day-card-day">Thursday</div>
-        <div>32&deg;</div>
-      </div>
-      <div class="day-card">
-        <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
-        <div class="day-card-day">Friday</div>
-        <div>32&deg;</div>
-      </div>
-      <div class="day-card">
-        <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
-        <div class="day-card-day">Saturday</div>
-        <div>32&deg;</div>
-      </div>
-      <div class="day-card">
-        <img src="icons/cloud.svg" alt="weathericon" class="weather-icon">
-        <div class="day-card-day">Sunday</div>
-        <div>32&deg;</div>
+      <div class="chart">
+        <div class="placeholder">
+          <img src="icons/chart-line-solid.svg" alt="charticon">
+        </div>
       </div>
     </section>
 
@@ -304,6 +311,11 @@
       <div class="day-card-day" data-day></div>
       <div><span data-temp></span><span>&deg;</span></div>
     </div>
+  </template>
+
+  <!-- Chart canvas HTML template -->
+  <template id="chart-canvas-template">
+    <canvas id="day-chart-canvas"></canvas>
   </template>
 
   <!-- Hour row HTML template -->
